@@ -1,0 +1,55 @@
+baseURL = 'https://coffee3699.github.io/lidongyuan.github.io/'
+languageCode = 'zh-cn'
+defaultContentLanguage = 'zh'
+title = 'Dongyuan’s Notes'
+theme = 'PaperMod'
+hasCJKLanguage = true
+timeZone = 'Asia/Shanghai'
+enableRobotsTXT = true
+[pagination]
+pagerSize = 8
+[outputs]
+home = ['HTML', 'RSS', 'JSON']
+[params]
+author = 'Dongyuan'
+description = '关于智能体、知识检索与多模态推理的研究笔记。'
+defaultTheme = 'auto'
+ShowReadingTime = true
+ShowCodeCopyButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowToc = true
+TocOpen = true
+mainSections = ['posts']
+[params.homeInfoParams]
+Title = 'Dongyuan’s Notes'
+Content = '记录学习，梳理问题。关于智能体、知识检索与多模态推理的研究笔记。'
+[[menu.main]]
+name = '文章'
+url = '/'
+weight = 1
+[[menu.main]]
+name = '归档'
+url = '/archives/'
+weight = 2
+[[menu.main]]
+name = '搜索'
+url = '/search/'
+weight = 3
+[[menu.main]]
+name = '标签'
+url = '/tags/'
+weight = 4
+[[menu.main]]
+name = '关于'
+url = '/about/'
+weight = 5
+[markup.goldmark.extensions.passthrough]
+enable = true
+[markup.goldmark.extensions.passthrough.delimiters]
+block = [['\\[', '\\]'], ['$$', '$$']]
+inline = [['\\(', '\\)']]
+[markup.highlight]
+noClasses = false
+[params.social]
+github = 'coffee3699'

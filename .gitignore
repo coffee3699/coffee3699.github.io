@@ -1,0 +1,9 @@
+/public/
+/resources/
+/.hugo_build.lock
+/.venv/
+/__pycache__/
+**/__pycache__/
+/content/posts/
+/.notion-stage/
+.env

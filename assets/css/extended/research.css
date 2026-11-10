@@ -1,0 +1,8 @@
+:root { --main-width: 780px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', sans-serif; }
+.post-content { line-height: 1.9; }
+.post-content h2 { margin-top: 2.2em; }
+.post-content a { text-underline-offset: 3px; }
+.first-entry { min-height: 220px; }
+.entry-content { line-height: 1.75; }
+.post-content pre { line-height: 1.6; }
