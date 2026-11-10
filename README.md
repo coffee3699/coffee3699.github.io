@@ -2,7 +2,7 @@
 
 Hugo + PaperMod 研究博客，Notion 为内容源，GitHub Actions 构建并部署到 GitHub Pages。
 
-网站：https://coffee3699.github.io/lidongyuan.github.io/
+网站：https://coffee3699.github.io/
 
 ## 发布文章
 
@@ -20,7 +20,7 @@ Hugo + PaperMod 研究博客，Notion 为内容源，GitHub Actions 构建并部
 - Actions secret: NOTION_TOKEN。
 - Actions variable: NOTION_DATA_SOURCE_ID。
 - Notion 连接应具有 Blog Posts 的读取权限。
-- 仓库名与 GitHub 用户名不同，因此当前为项目网站子路径；改名或绑定域名后需修改 hugo.toml 的 baseURL。
+- 仓库 coffee3699.github.io 为个人主页，baseURL 为 https://coffee3699.github.io/；以后绑定自定义域名时需同步更新此配置。
 
 ## 内容格式
 
