@@ -1,0 +1,5 @@
+<article class="series-entry">
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <p>{{ .Summary | plainify | htmlUnescape }}</p>
+  <div class="series-meta">{{ partial "post_meta.html" . }}</div>
+</article>

@@ -45,3 +45,7 @@ inline = [['\\(', '\\)']]
 noClasses = false
 [params.social]
 github = 'coffee3699'
+
+[taxonomies]
+series = "series"
+category = "categories"

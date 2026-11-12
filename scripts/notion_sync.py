@@ -219,7 +219,7 @@ def metadata(page, now):
     if not title: raise ValueError('Article title cannot be empty')
     summary = plain(p.get('Summary', {}).get('rich_text', []))
     return {'title': title, 'date': date_obj.isoformat(), 'slug': slug, 'description': summary, 'summary': summary,
-            'tags': [x['name'] for x in p.get('Tags', {}).get('multi_select', [])],
+            'series': list(dict.fromkeys(x['name'] for x in p.get('Series', p.get('Tags', {})).get('multi_select', []))),
             'categories': [p['Category']['select']['name']] if p.get('Category', {}).get('select') else [],
             'draft': False}
 

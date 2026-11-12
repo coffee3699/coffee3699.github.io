@@ -7,7 +7,7 @@ Hugo + PaperMod 研究博客，Notion 为内容源，GitHub Actions 构建并部
 ## 发布文章
 
 1. 直接在 Notion Blog Posts 中编辑原始文章。数据库条目就是原始页面，仅维护这一份正文。
-2. 填写 Name、Summary、Slug（小写英文与连字符）、Published Date、Category、Tags。
+2. 填写 Name、Summary、Slug（小写英文与连字符）、Published Date、Category、Series。
 3. 设置 Status = Published，勾选 Public Approved。
 4. GitHub Actions → Publish research blog → Run workflow；或等待每小时第 23 分钟的定时任务（GitHub 可能延迟执行）。
 5. 只有部署任务成功才代表网站已更新。首次部署没有合格文章时显示博客首页与导航，这是正常状态。
@@ -48,3 +48,7 @@ hugo server
 ## 维护
 
 主题固定到 Git 子模块提交，Hugo 和 uv 固定版本。更新后先跑测试与 Hugo 构建。GitHub 可能在长期无活动后停用公共仓库的计划任务，可在 Actions 页面重新启用。查看失败任务日志时不要粘贴 token 或私有正文。
+
+## 系列分区
+
+Notion 中只维护 Series（多选），首页按 Series 分区展示。同一文章可属于多个系列，会在对应分区分别出现；未设置系列的文章归入“未分类”。原 Tags 已合并至 Series。
