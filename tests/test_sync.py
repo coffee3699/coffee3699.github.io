@@ -25,7 +25,7 @@ class SyncTests(unittest.TestCase):
             self.assertEqual(list(sync.paginate('source', {})), [1, 2])
             self.assertEqual(request.call_args.args[1]['start_cursor'], 'next')
     def test_private_mentions_fail(self):
-        with self.assertRaises(ValueError): sync.rich([{'type': 'mention', 'mention': {'type': 'page'}}])
+        self.assertEqual(sync.rich([{'type': 'mention', 'mention': {'type': 'page'}, 'plain_text': '原文引用'}]), '原文引用')
         for url in ['https://www.notion.so/private', 'javascript:alert(1)']:
             with self.assertRaises(ValueError): sync.safe_url(url)
     def test_math_code_and_unknown_blocks(self):

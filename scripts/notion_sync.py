@@ -69,7 +69,8 @@ def rich(parts):
             out.append('\\(' + p['equation']['expression'] + '\\)')
             continue
         if p.get('type') == 'mention' and p.get('mention', {}).get('type') in ('page', 'database', 'user'):
-            raise ValueError('Remove private page/database/user mentions before publishing')
+            out.append(p.get('plain_text', ''))
+            continue
         s = p.get('plain_text', p.get('text', {}).get('content', ''))
         a = p.get('annotations', {})
         if a.get('code'):
@@ -82,7 +83,10 @@ def rich(parts):
             if a.get('strikethrough'): s = '~~' + s + '~~'
         link = p.get('href') or p.get('text', {}).get('link', {}) or {}
         if isinstance(link, dict): link = link.get('url')
-        if link: s = '[' + s + '](' + safe_url(link) + ')'
+        if link:
+            host = urllib.parse.urlparse(link).hostname or ''
+            if host not in ('notion.so', 'app.notion.com', 'www.notion.so') and not host.endswith('.notion.so'):
+                s = '[' + s + '](' + safe_url(link) + ')'
         out.append(s)
     return ''.join(out)
 
@@ -156,6 +160,10 @@ def render(blocks, folder):
             name = image_download(v[v['type']]['url'], folder)
             caption = rich(v.get('caption', []))
             item = f'![{caption}]({name})'
+        elif kind == 'video' and v.get('type') == 'external':
+            url = safe_url(v['external']['url'])
+            label = rich(v.get('caption', [])) or '观看视频'
+            item = f'[{label}]({url})'
         elif kind == 'table':
             rows = [[rich(c).replace('|', '\\|').replace('\n', ' ') for c in x['table_row']['cells']] for x in children()]
             if not rows: continue
