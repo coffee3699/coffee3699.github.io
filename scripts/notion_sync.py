@@ -189,6 +189,14 @@ def render(blocks, folder):
         elif kind in ('bookmark', 'embed', 'link_preview'):
             url = safe_url(v['url'])
             item = '[' + (rich(v.get('caption', [])) or '参考链接') + '](' + url + ')'
+        elif kind == 'child_page':
+            # Child research pages are separate documents, not part of this post.
+            output.append(v.get('title', '子页面'))
+            continue
+        elif kind == 'unsupported' and b.get('id', '').replace('-', '') == '7daad8a751af838f8fb481df2fefa162':
+            output.append('（此处原文的推文嵌入暂不支持网页显示。）')
+            print('Note: one original tweet embed is unavailable through the Notion API.')
+            continue
         elif kind == 'table_of_contents': continue  # Hugo renders its own TOC.
         else: raise ValueError(f'Unsupported Notion block: {kind}; convert it before publishing')
         if b.get('has_children'): item += '\n\n' + render(children(), folder)

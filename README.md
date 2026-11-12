@@ -6,7 +6,7 @@ Hugo + PaperMod 研究博客，Notion 为内容源，GitHub Actions 构建并部
 
 ## 发布文章
 
-1. 在 Notion Blog Posts 中完成正文，移除选题页的编辑说明、检查清单和占位内容。
+1. 直接在 Notion Blog Posts 中编辑原始文章。数据库条目就是原始页面，仅维护这一份正文。
 2. 填写 Name、Summary、Slug（小写英文与连字符）、Published Date、Category、Tags。
 3. 设置 Status = Published，勾选 Public Approved。
 4. GitHub Actions → Publish research blog → Run workflow；或等待每小时第 23 分钟的定时任务（GitHub 可能延迟执行）。
@@ -28,7 +28,7 @@ Hugo + PaperMod 研究博客，Notion 为内容源，GitHub Actions 构建并部
 
 不支持的块会中止部署，避免静默丢失正文。文件附件、同步块、子页面、数据库、视频等请先改写成受支持的形式。图片会下载到文章资源目录，支持 PNG/JPEG/GIF/WebP/AVIF，单张不超过 20 MB。公式渲染使用 MathJax CDN。
 
-Source Notes 不导出。私人页面、数据库和用户 mention 及 Notion 链接会阻止发布。此检查不能代替人工审稿。同步不递归读取 Source Notes；不要直接复制内部报告作为公开正文。
+正文直接从原始页面读取，不复制到另一份发布稿。原始 Notion 页面链接在移动后保持有效。Source Notes 不导出。私人页面、数据库和用户 mention 及 Notion 链接会阻止发布。此检查不能代替人工审稿。同步不递归读取 Source Notes；不要直接复制内部报告作为公开正文。
 
 ## 本地开发
 
