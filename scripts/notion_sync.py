@@ -233,7 +233,7 @@ def main():
     if stage.exists(): shutil.rmtree(stage)
     stage.mkdir()
     seen = set()
-    query = {'filter': {'and': [{'property': 'Status', 'select': {'equals': 'Published'}}, {'property': 'Public Approved', 'checkbox': {'equals': True}}]}}
+    query = {}  # Check publication fields locally after page moves; do not depend on the server-side filter index.
     try:
         for page in paginate(f'data_sources/{source}/query', query):
             meta = metadata(page, dt.datetime.now(ZoneInfo('Asia/Shanghai')))
