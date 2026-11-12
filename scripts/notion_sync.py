@@ -221,6 +221,7 @@ def metadata(page, now):
     return {'title': title, 'date': date_obj.isoformat(), 'slug': slug, 'description': summary, 'summary': summary,
             'series': list(dict.fromkeys(x['name'] for x in p.get('Series', p.get('Tags', {})).get('multi_select', []))),
             'categories': [p['Category']['select']['name']] if p.get('Category', {}).get('select') else [],
+            'starred': p.get('Starred', {}).get('checkbox') is True,
             'draft': False}
 
 

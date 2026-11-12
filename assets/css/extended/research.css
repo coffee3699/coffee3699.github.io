@@ -36,3 +36,9 @@ body { font-size: 16px; }
   .post-content h1 { font-size: 25px; }
   .post-content h2 { font-size: 22px; }
 }
+
+.home-intro { margin: 28px 0 32px; color: var(--secondary); font-size: 16px; line-height: 1.8; }
+.series-entry-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.series-entry-heading h3 { min-width: 0; }
+.article-star { flex-shrink: 0; color: #a96b00; font-size: 21px; line-height: 1.3; }
+.dark .article-star { color: #f2c45e; }

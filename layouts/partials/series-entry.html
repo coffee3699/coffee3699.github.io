@@ -1,5 +1,8 @@
 <article class="series-entry">
-  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  <div class="series-entry-heading">
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ if .Params.starred }}<span class="article-star" role="img" aria-label="星标文章" title="星标文章">★</span>{{ end }}
+  </div>
   <p>{{ .Summary | plainify | htmlUnescape }}</p>
   <div class="series-meta">{{ partial "post_meta.html" . }}</div>
 </article>

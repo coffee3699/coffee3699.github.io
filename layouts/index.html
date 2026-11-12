@@ -1,5 +1,5 @@
 {{ define "main" }}
-{{ partial "home_info.html" . }}
+{{ with site.Params.homeInfoParams.Content }}<div class="home-intro">{{ . | markdownify }}</div>{{ end }}
 {{ $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ $posts = where $posts "Params.hiddenInHomeList" "!=" "true" }}
 {{ $series := slice }}
