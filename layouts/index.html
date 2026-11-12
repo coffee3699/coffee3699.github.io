@@ -3,16 +3,17 @@
 {{ $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ $posts = where $posts "Params.hiddenInHomeList" "!=" "true" }}
 {{ $tags := slice }}
-{{ range $posts }}{{ range .GetTerms "tags" }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+{{ range $posts }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
 {{ $tags = $tags | uniq }}
 <section class="article-browser" aria-label="文章主题筛选">
   <nav class="topic-filters" aria-label="按标签筛选">
     <a href="{{ site.Home.RelPermalink }}" class="topic-filter is-active" data-topic="" aria-current="true">全部 <span>{{ len $posts }}</span></a>
-    {{ range sort $tags "LinkTitle" }}
-    {{ $tag := .LinkTitle }}
+    {{ range sort $tags }}
+    {{ $tag := . }}
+    {{ $term := site.GetPage (printf "/tags/%s" ($tag | urlize)) }}
     {{ $count := 0 }}
     {{ range $posts }}{{ if in .Params.tags $tag }}{{ $count = add $count 1 }}{{ end }}{{ end }}
-    <a href="{{ .RelPermalink }}" class="topic-filter" data-topic="{{ $tag }}">{{ $tag }} <span>{{ $count }}</span></a>
+    <a href="{{ with $term }}{{ .RelPermalink }}{{ else }}{{ site.Home.RelPermalink }}?tag={{ $tag | urlquery }}{{ end }}" class="topic-filter" data-topic="{{ $tag }}">{{ $tag }} <span>{{ $count }}</span></a>
     {{ end }}
   </nav>
   <p class="filter-status" role="status" aria-live="polite">共 {{ len $posts }} 篇文章</p>
