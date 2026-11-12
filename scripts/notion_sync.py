@@ -19,6 +19,18 @@ ROOT = Path(__file__).resolve().parents[1]
 API = 'https://api.notion.com/v1/'
 
 
+def network_open(opener, target):
+    for attempt in range(4):
+        try:
+            return opener(target, timeout=60)
+        except urllib.error.HTTPError:
+            raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == 3:
+                raise
+            time.sleep(2 ** attempt)
+
+
 def request(path, payload=None):
     data = None if payload is None else json.dumps(payload).encode()
     req = urllib.request.Request(API + path, data=data, headers={
@@ -26,7 +38,7 @@ def request(path, payload=None):
         'Notion-Version': '2025-09-03', 'Content-Type': 'application/json'})
     for attempt in range(5):
         try:
-            with urllib.request.urlopen(req, timeout=60) as response:
+            with network_open(urllib.request.urlopen, req) as response:
                 return json.load(response)
         except urllib.error.HTTPError as exc:
             if exc.code == 429 or exc.code >= 500:
@@ -108,7 +120,7 @@ def image_download(url, folder):
             if not ipaddress.ip_address(addr[4][0]).is_global:
                 raise ValueError('Non-public image address rejected')
         try:
-            response = opener.open(url, timeout=60)
+            response = network_open(opener.open, url)
             break
         except urllib.error.HTTPError as exc:
             if exc.code in (301, 302, 303, 307, 308):
