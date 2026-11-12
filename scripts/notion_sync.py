@@ -218,10 +218,14 @@ def metadata(page, now):
     title = plain(p['Name']['title'])
     if not title: raise ValueError('Article title cannot be empty')
     summary = plain(p.get('Summary', {}).get('rich_text', []))
+    starred = p.get('Starred', {}).get('checkbox') is True
+    series = list(dict.fromkeys(x['name'] for x in p.get('Series', p.get('Tags', {})).get('multi_select', [])))
+    if starred and '星标' not in series:
+        series.append('星标')
     return {'title': title, 'date': date_obj.isoformat(), 'slug': slug, 'description': summary, 'summary': summary,
-            'series': list(dict.fromkeys(x['name'] for x in p.get('Series', p.get('Tags', {})).get('multi_select', []))),
+            'series': series,
             'categories': [p['Category']['select']['name']] if p.get('Category', {}).get('select') else [],
-            'starred': p.get('Starred', {}).get('checkbox') is True,
+            'starred': starred,
             'draft': False}
 
 

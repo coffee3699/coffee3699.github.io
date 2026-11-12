@@ -5,6 +5,7 @@
 {{ $series := slice }}
 {{ range $posts }}{{ range .Params.series }}{{ $series = $series | append . }}{{ end }}{{ end }}
 {{ $series = $series | uniq | sort }}
+{{ $series = slice "星标" | append (complement (slice "星标") $series) }}
 <div class="series-browser">
   <nav class="series-index" aria-label="文章系列">
     {{ range $series }}<a href="#series-{{ . | anchorize }}">{{ . }}</a>{{ end }}
@@ -15,7 +16,7 @@
   {{ $members := where $posts "Params.series" "intersect" (slice $name) }}
   <section class="series-section" id="series-{{ $name | anchorize }}" aria-label="{{ $name }} 系列">
     <header class="series-heading"><h2>{{ $name }}</h2><span>{{ len $members }} 篇</span></header>
-    {{ range $members.ByDate.Reverse }}{{ partial "series-entry.html" . }}{{ end }}
+    {{ range $members.ByDate.Reverse }}{{ partial "series-entry.html" . }}{{ else }}<p class="series-empty">暂无星标文章。</p>{{ end }}
   </section>
   {{ end }}
   {{ $unassigned := slice }}

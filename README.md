@@ -54,3 +54,5 @@ hugo server
 Notion 中只维护 Series（多选），首页按 Series 分区展示。同一文章可属于多个系列，会在对应分区分别出现；未设置系列的文章归入“未分类”。原 Tags 已合并至 Series。
 
 星标：勾选 Notion 的 Starred 后，同步时在首页文章卡片右上角显示星标；取消勾选后下次同步移除。
+
+首页“星标”快捷分区由 Starred 自动生成，无需另选 Series。
