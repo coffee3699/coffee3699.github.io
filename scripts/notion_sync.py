@@ -231,6 +231,6 @@ if __name__ == '__main__':
     try: main()
     except Exception as exc:
         # No tokens, signed asset URLs or private article contents in CI logs.
-        detail = str(exc) if isinstance(exc, RuntimeError) else 'Check publication fields and supported blocks'
+        detail = str(exc) if isinstance(exc, (RuntimeError, ValueError)) else 'Check publication fields and supported blocks'
         print(f'Sync failed ({type(exc).__name__}): {detail}. Deployment stopped.', file=sys.stderr)
         sys.exit(1)

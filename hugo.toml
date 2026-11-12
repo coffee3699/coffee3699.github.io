@@ -29,21 +29,13 @@ name = '文章'
 url = '/'
 weight = 1
 [[menu.main]]
-name = '归档'
-url = '/archives/'
+name = 'Pub'
+url = '/pub/'
 weight = 2
-[[menu.main]]
-name = '搜索'
-url = '/search/'
-weight = 3
-[[menu.main]]
-name = '标签'
-url = '/tags/'
-weight = 4
 [[menu.main]]
 name = '关于'
 url = '/about/'
-weight = 5
+weight = 3
 [markup.goldmark.extensions.passthrough]
 enable = true
 [markup.goldmark.extensions.passthrough.delimiters]

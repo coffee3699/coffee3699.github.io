@@ -1,0 +1,35 @@
+{{ define "main" }}
+{{ partial "home_info.html" . }}
+{{ $posts := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{ $posts = where $posts "Params.hiddenInHomeList" "!=" "true" }}
+{{ $tags := slice }}
+{{ range $posts }}{{ range .GetTerms "tags" }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+{{ $tags = $tags | uniq }}
+<section class="article-browser" aria-label="文章主题筛选">
+  <nav class="topic-filters" aria-label="按标签筛选">
+    <a href="{{ site.Home.RelPermalink }}" class="topic-filter is-active" data-topic="" aria-current="true">全部 <span>{{ len $posts }}</span></a>
+    {{ range sort $tags "LinkTitle" }}
+    {{ $tag := .LinkTitle }}
+    {{ $count := 0 }}
+    {{ range $posts }}{{ if in .Params.tags $tag }}{{ $count = add $count 1 }}{{ end }}{{ end }}
+    <a href="{{ .RelPermalink }}" class="topic-filter" data-topic="{{ $tag }}">{{ $tag }} <span>{{ $count }}</span></a>
+    {{ end }}
+  </nav>
+  <p class="filter-status" role="status" aria-live="polite">共 {{ len $posts }} 篇文章</p>
+  <div class="article-list">
+    {{ range $posts.ByDate.Reverse }}
+    <article class="post-entry" data-post-tags="{{ .Params.tags | default slice | jsonify }}">
+      <header class="entry-header"><h2>{{ .Title }}</h2></header>
+      <div class="entry-content"><p>{{ .Summary | plainify | htmlUnescape }}</p></div>
+      <footer class="entry-footer">{{ partial "post_meta.html" . }}
+        {{ with .Params.tags }}<span class="entry-topics">{{ delimit . " · " }}</span>{{ end }}
+      </footer>
+      <a class="entry-link" aria-label="阅读 {{ .Title }}" href="{{ .RelPermalink }}"></a>
+    </article>
+    {{ end }}
+  </div>
+  <p class="filter-empty" {{ if $posts }}hidden{{ end }}>暂无文章。</p>
+</section>
+{{ $script := resources.Get "js/topic-filter.js" | minify | fingerprint }}
+<script defer src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+{{ end }}
