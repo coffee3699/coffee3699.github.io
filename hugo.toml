@@ -12,6 +12,7 @@ pagerSize = 8
 home = ['HTML', 'RSS', 'JSON']
 [params]
 author = 'Dongyuan'
+DateFormat = '2006年01月02日'
 description = '关于智能体、知识检索与多模态推理的研究笔记。'
 defaultTheme = 'auto'
 ShowReadingTime = true
@@ -19,7 +20,7 @@ ShowCodeCopyButtons = true
 ShowPostNavLinks = true
 ShowBreadCrumbs = true
 ShowToc = true
-TocOpen = true
+TocOpen = false
 mainSections = ['posts']
 [params.homeInfoParams]
 Title = 'Dongyuan’s Notes'

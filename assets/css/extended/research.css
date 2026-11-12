@@ -13,11 +13,26 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC
 .series-total { margin: 16px 0 32px; color: var(--secondary); font-size: 13px; }
 .series-section { margin: 0 0 48px; scroll-margin-top: 28px; }
 .series-heading { display: flex; align-items: baseline; gap: 12px; padding-bottom: 14px; border-bottom: 2px solid var(--primary); }
-.series-heading h2 { font-size: 25px; }
+.series-heading h2 { font-size: 22px; }
 .series-heading span { color: var(--secondary); font-size: 13px; }
 .series-entry { padding: 22px 0; border-bottom: 1px solid var(--border); }
-.series-entry h3 { font-size: 20px; line-height: 1.5; }
+.series-entry h3 { font-size: 18px; line-height: 1.5; }
 .series-entry h3 a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .series-entry p { color: var(--secondary); font-size: 15px; line-height: 1.8; margin: 8px 0; }
 .series-meta { color: var(--secondary); font-size: 12px; }
 .series-empty { color: var(--secondary); padding: 32px 0; }
+
+body { font-size: 16px; }
+.post-title { font-size: 32px; }
+.post-content { font-size: 16px; }
+.post-content h1 { font-size: 28px; }
+.post-content h2 { font-size: 24px; }
+.post-content h3 { font-size: 20px; }
+.post-content h4 { font-size: 17px; }
+.home-info h1 { font-size: 30px; }
+.toc { font-size: 14px; }
+@media (max-width: 600px) {
+  .post-title { font-size: 28px; }
+  .post-content h1 { font-size: 25px; }
+  .post-content h2 { font-size: 22px; }
+}
